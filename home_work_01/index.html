@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Work 1</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <h2>Часть 2. Задание по Vue</h2>
+    <h3>1. Создать кнопку "Перевернуть". При клике на кнопку текст кнопки должен перевернуться и отобразиться в обратном порядке</h3>
+
+    <div id="revers">
+        <button @click="reversText">{{buttonText}}</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#revers',
+            data: {
+                buttonText: 'Перевернуть'
+            },
+            methods: {
+                reversText() {
+                    this.buttonText = this.buttonText.split('').reverse().join('');
+                }
+            }
+        })
+    </script>
+
+    <h3>2. Есть список элементов. Пользователь может добавлять новые элементы списка с текстом “Новый элемент списка” нажав на кнопку "Добавить".</h3>
+
+    <div id="list">
+        <ul>
+            <li v-for="(item, element) in lists" @click="removeElement(element)">{{item}}</li>
+        </ul>
+        <button @click="addElement">Добавить</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#list',
+            data: {
+                lists: [
+                    "Элемент списка"
+                ]
+            },
+            methods: {
+                addElement() {
+                    this.lists.push("Новый элемент списка");
+                },
+                removeElement(index) {
+                    this.lists.splice(index, 1);
+                }
+            }
+        })
+    </script>
+
+    <h3>3. *Дополнительное задание: При клике на элемент списка он должен быть удален. (по желанию)</h3>
+    <p>Реализованно</p>
+
+</body>
+</html>
