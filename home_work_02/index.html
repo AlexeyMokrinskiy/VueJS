@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 2</title>
+</head>
+
+<body>
+
+<h2>Часть 2. Задание Vue</h2>
+
+<h3>Вы разрабатываете приложение для отображения и сортировки списка товаров. У вас есть массив объектов products, где каждый объект представляет товар с его названием и ценой. Вам необходимо отобразить список товаров и предоставить пользователю возможность сортировать товары по цене (по возрастанию и по убыванию).</h3>
+
+    <div id="app">
+        <button @click="sorted">Сортировка по: {{sortedText}}</button>
+        <div v-for="product in sortedProduct" class="products">
+            <h2>{{product.nameProduct}}</h2>
+            <p>{{product.priceProduct}}</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+        new Vue({
+                el: '#app',
+                data: {
+                    sortedText: "возрастанию",
+                    isSorted: 0,
+                    products: [
+                        {
+                            nameProduct: "Продукт 1",
+                            priceProduct: 1000
+                        },
+                        {
+                            nameProduct: "Продукт 2",
+                            priceProduct: 400
+                        },
+                        {
+                            nameProduct: "Продукт 3",
+                            priceProduct: 380
+                        },
+                        {
+                            nameProduct: "Продукт 4",
+                            priceProduct: 2200
+                        },
+                        {
+                            nameProduct: "Продукт 5",
+                            priceProduct: 750
+                        },
+                    ]
+                },
+                methods: {
+                    sorted: function () {
+                        this.isSorted = (this.isSorted === 1) ? 2 : 1;
+                        this.sortedText = (this.isSorted === 1) ? "убыванию" : "возрастанию";
+                    }
+                },
+                computed: {
+                    sortedProduct() {
+                        switch (this.isSorted) {
+                            case 1: return this.products.sort((d1, d2) => (d1.priceProduct > d2.priceProduct) ? 1 : -1);
+                            case 2: return this.products.sort((d1, d2) => (d1.priceProduct < d2.priceProduct) ? 1 : -1);
+                            default: return this.products;
+                        }
+                    }
+                }
+            });
+    </script>
+</body>
+
+</html>
