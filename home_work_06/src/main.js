@@ -1,8 +1,13 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from "vue";
+import App from "./App.vue";
+import store from "./store";
+import VueCarousel from "vue-carousel";
 
-Vue.config.productionTip = false
+Vue.use(VueCarousel);
+
+Vue.config.productionTip = false;
 
 new Vue({
-  render: h => h(App)
-}).$mount('#app')
+  store,
+  render: (h) => h(App),
+}).$mount("#app");
